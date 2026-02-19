@@ -1,0 +1,5 @@
+site_name: API Documentation
+nav:
+  - Главная: index.md
+  - Поиск товаров: products-search.md
+theme: readthedocs
