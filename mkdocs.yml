@@ -1,5 +1,32 @@
 site_name: API Documentation
+
+theme:
+  name: material
+  language: ru
+  custom_dir: overrides
+  features:
+    - navigation.tabs
+    - navigation.sections
+
+docs_dir: docs
+
 nav:
-  - Главная: index.md
-  - Поиск товаров: products-search.md
-theme: readthedocs
+  - Главная: ru/index.md
+  - Поиск товаров: ru/search.md
+  - Поиск стран и адресов: ru/post.md
+  - English:
+      - Home: en/index.md
+      - Products Search: en/search.md
+      - Countries and Addresses: en/post.md
+
+extra:
+  alternate:
+    - name: Русский
+      link: /ru/
+      lang: ru
+    - name: English
+      link: /en/
+      lang: en
+
+pluguns:
+  - search

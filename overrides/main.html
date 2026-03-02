@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block extrahead %} {{ super() }}
+<script>
+  document.addEventListener("click", function (e) {
+    const link = e.target.closest("a");
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+
+    if (
+      href === "/ru/" ||
+      href === "/en/" ||
+      href === "/ru" ||
+      href === "/en"
+    ) {
+      e.preventDefault();
+
+      const currentPath = window.location.pathname;
+
+      const currentLang = currentPath.startsWith("/en/") ? "en" : "ru";
+
+      const targetLang = href.includes("/en") ? "en" : "ru";
+
+      let pagePath = "";
+      if (currentPath.startsWith("/ru/")) {
+        pagePath = currentPath.replace("/ru/", "");
+      } else if (currentPath.startsWith("/en/")) {
+        pagePath = currentPath.replace("/en/", "");
+      }
+
+      const newUrl = pagePath
+        ? `/${targetLang}/${pagePath}`
+        : `/${targetLang}/`;
+
+      window.location.href = newUrl;
+    }
+  });
+</script>
+{% endblock %}

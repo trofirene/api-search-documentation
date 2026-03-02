@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Поиск товаров - API Documentation</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041f\u043e\u0438\u0441\u043a \u0442\u043e\u0432\u0430\u0440\u043e\u0432";
+        var mkdocs_page_input_path = "products-search.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> API Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Главная</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Поиск товаров</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Информация о запросе</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#query-parameters">Параметры запроса (Query Parameters)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">Основные фильтры</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#filters">Структура объекта filters</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#paginate">Структура объекта paginate</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Пример запроса</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_5">Вложенные данные и фильтрация</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">Селекторы и дополнительные параметры</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#show_whishlist">show_whishlist</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#only_featured">only_featured</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#only_new">only_new</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#with_discount">with_discount</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#ordering">ordering</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">Как использовать селекторы</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_8">Информация об ответе</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#page_data">Детальная структура page_data</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#min_max-measures">Структура min_max / measures</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_9">Пример ответа</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">API Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Поиск товаров</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="_1">Поиск товаров</h1>
+<h2 id="_2">Информация о запросе</h2>
+<table>
+<thead>
+<tr>
+<th>Свойство</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Метод</td>
+<td><code>GET</code></td>
+</tr>
+<tr>
+<td>URL</td>
+<td><code>/api/products/search</code></td>
+</tr>
+<tr>
+<td>Тип формы</td>
+<td><code>query</code></td>
+</tr>
+<tr>
+<td>Имя URL</td>
+<td><code>products_search</code></td>
+</tr>
+</tbody>
+</table>
+<p>Данный эндпоинт позволяет выполнять поиск товаров по множеству фильтров: категориям, цене, весу, размерам, производителям, продавцам, рейтингу и характеристикам (вариантам). Поддерживает пагинацию и возвращает детальную информацию для построения фильтров на фронтенде (минимальные/максимальные значения, доступные варианты, списки производителей и продавцов).</p>
+<h2 id="query-parameters">Параметры запроса (Query Parameters)</h2>
+<p>Запрос передается в формате JSON в теле <code>GET</code>-запроса.</p>
+<h3 id="_3">Основные фильтры</h3>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Тип</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>filters</code></td>
+<td><code>object</code></td>
+<td>Объект с условиями фильтрации (см. таблицу ниже).</td>
+</tr>
+<tr>
+<td><code>paginate</code></td>
+<td><code>object</code></td>
+<td>Объект с настройками пагинации: <code>page</code> (номер страницы) и <code>pp_items</code> (элементов на странице).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="filters">Структура объекта <code>filters</code></h3>
+<table>
+<thead>
+<tr>
+<th>Имя поля</th>
+<th>Описание</th>
+<th>Тип данных</th>
+<th>Обязательное</th>
+<th>Пример значения / варианты</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Фильтр по конкретному ID товара</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"123"</code></td>
+</tr>
+<tr>
+<td><code>categories</code></td>
+<td>IDs категорий для фильтрации товаров</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[1, 3, 5]</code></td>
+</tr>
+<tr>
+<td><code>subscription_exists</code></td>
+<td>Наличие подписки на товар</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"true"</code> / <code>"false"</code> / <code>""</code></td>
+</tr>
+<tr>
+<td><code>id_in</code></td>
+<td>Фильтр по нескольким ID товаров (через запятую)</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"123,456,789"</code></td>
+</tr>
+<tr>
+<td><code>is_related_for</code></td>
+<td>ID товара для поиска связанных товаров</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"123"</code></td>
+</tr>
+<tr>
+<td><code>product_group</code></td>
+<td>Фильтр по группам товаров</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[2, 4]</code></td>
+</tr>
+<tr>
+<td><code>search_string</code></td>
+<td>Поисковый запрос по названию/описанию</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"брошь"</code></td>
+</tr>
+<tr>
+<td><code>price_from</code></td>
+<td>Начальное значение диапазона цен</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"1000"</code></td>
+</tr>
+<tr>
+<td><code>price_to</code></td>
+<td>Конечное значение диапазона цен</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"5000"</code></td>
+</tr>
+<tr>
+<td><code>price_currency</code></td>
+<td>Валюта цены (ID валюты)</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"1"</code></td>
+</tr>
+<tr>
+<td><code>product_owner</code></td>
+<td>IDs продавцов товаров</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[11, 22]</code></td>
+</tr>
+<tr>
+<td><code>product_owner_name</code></td>
+<td>Поиск по названию продавца</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"Иван"</code></td>
+</tr>
+<tr>
+<td><code>product_manufacture</code></td>
+<td>IDs производителей товаров</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[1, 2]</code></td>
+</tr>
+<tr>
+<td><code>avg_raiting_from</code></td>
+<td>Начальное значение среднего рейтинга</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"4.0"</code></td>
+</tr>
+<tr>
+<td><code>avg_raiting_to</code></td>
+<td>Конечное значение среднего рейтинга</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"5.0"</code></td>
+</tr>
+<tr>
+<td><code>c_aprooved_feedbacks_from</code></td>
+<td>Минимальное количество подтвержденных отзывов</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"10"</code></td>
+</tr>
+<tr>
+<td><code>c_aprooved_feedbacks_to</code></td>
+<td>Максимальное количество подтвержденных отзывов</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"100"</code></td>
+</tr>
+<tr>
+<td><code>price_discount_from</code></td>
+<td>Минимальная цена со скидкой</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"500"</code></td>
+</tr>
+<tr>
+<td><code>price_discount_to</code></td>
+<td>Максимальная цена со скидкой</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"3000"</code></td>
+</tr>
+<tr>
+<td><code>weight_search_by</code></td>
+<td>Тип поиска по весу</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"exact"</code> / <code>"range"</code></td>
+</tr>
+<tr>
+<td><code>weight_from</code></td>
+<td>Минимальный вес</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"100"</code></td>
+</tr>
+<tr>
+<td><code>weight_to</code></td>
+<td>Максимальный вес</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"500"</code></td>
+</tr>
+<tr>
+<td><code>length_search_by</code></td>
+<td>Тип поиска по длине</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"exact"</code> / <code>"range"</code></td>
+</tr>
+<tr>
+<td><code>length_from</code></td>
+<td>Минимальная длина</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"10"</code></td>
+</tr>
+<tr>
+<td><code>length_to</code></td>
+<td>Максимальная длина</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"50"</code></td>
+</tr>
+<tr>
+<td><code>width_from</code></td>
+<td>Минимальная ширина</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"5"</code></td>
+</tr>
+<tr>
+<td><code>width_to</code></td>
+<td>Максимальная ширина</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"20"</code></td>
+</tr>
+<tr>
+<td><code>height_from</code></td>
+<td>Минимальная высота</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"2"</code></td>
+</tr>
+<tr>
+<td><code>height_to</code></td>
+<td>Максимальная высота</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"15"</code></td>
+</tr>
+<tr>
+<td><code>owner_rating_from</code></td>
+<td>Минимальный рейтинг продавца</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"4.0"</code></td>
+</tr>
+<tr>
+<td><code>show_whishlist</code></td>
+<td>Показывать только из вишлиста</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"true"</code> / <code>"false"</code> / <code>""</code></td>
+</tr>
+<tr>
+<td><code>only_featured</code></td>
+<td>Только рекомендуемые товары</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"true"</code> / <code>"false"</code> / <code>""</code></td>
+</tr>
+<tr>
+<td><code>only_new</code></td>
+<td>Только новые товары</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"true"</code> / <code>"false"</code> / <code>""</code></td>
+</tr>
+<tr>
+<td><code>with_discount</code></td>
+<td>Только товары со скидкой</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"true"</code> / <code>"false"</code> / <code>""</code></td>
+</tr>
+<tr>
+<td><code>is_good_for_promo</code></td>
+<td>Товары, подходящие для промо</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"true"</code> / <code>"false"</code> / <code>""</code></td>
+</tr>
+<tr>
+<td><code>from_modal</code></td>
+<td>Запрос из модального окна</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"true"</code> / <code>"false"</code> / <code>""</code></td>
+</tr>
+<tr>
+<td><code>ordering</code></td>
+<td>Сортировка результатов</td>
+<td><code>string</code></td>
+<td>Нет</td>
+<td><code>"price"</code>, <code>"-price"</code>, <code>"avg_raiting"</code>, <code>"-avg_raiting"</code></td>
+</tr>
+<tr>
+<td><code>variant_25</code></td>
+<td>Фильтр по характеристике с ID 25</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[33]</code></td>
+</tr>
+<tr>
+<td><code>variant_24</code></td>
+<td>Фильтр по характеристике с ID 24</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[31]</code></td>
+</tr>
+<tr>
+<td><code>variant_13</code></td>
+<td>Фильтр по характеристике с ID 13</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[28]</code></td>
+</tr>
+<tr>
+<td><code>variant_1</code></td>
+<td>Фильтр по характеристике с ID 1</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[5, 6, 8]</code></td>
+</tr>
+<tr>
+<td><code>variant_4</code></td>
+<td>Фильтр по характеристике с ID 4</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[15, 16]</code></td>
+</tr>
+<tr>
+<td><code>variant_3</code></td>
+<td>Фильтр по характеристике с ID 3</td>
+<td><code>array</code></td>
+<td>Нет</td>
+<td><code>[9, 10, 11, 12, 13]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="paginate">Структура объекта <code>paginate</code></h3>
+<table>
+<thead>
+<tr>
+<th>Имя поля</th>
+<th>Описание</th>
+<th>Тип данных</th>
+<th>Обязательное</th>
+<th>Пример значения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>page</code></td>
+<td>Номер страницы для пагинации</td>
+<td><code>integer</code></td>
+<td>Да</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>pp_items</code></td>
+<td>Количество элементов на странице</td>
+<td><code>integer</code></td>
+<td>Да</td>
+<td><code>15</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">Пример запроса</h3>
+<pre><code class="language-json">{
+  &quot;filters&quot;: {
+    &quot;categories&quot;: [1, 3],
+    &quot;search_string&quot;: &quot;брошь&quot;,
+    &quot;price_from&quot;: &quot;1000&quot;,
+    &quot;price_to&quot;: &quot;5000&quot;,
+    &quot;with_discount&quot;: &quot;true&quot;,
+    &quot;ordering&quot;: &quot;-avg_raiting&quot;,
+    &quot;variant_1&quot;: [5, 6],
+    &quot;variant_3&quot;: [9, 10]
+  },
+  &quot;paginate&quot;: {
+    &quot;page&quot;: 1,
+    &quot;pp_items&quot;: 15
+  }
+}
+</code></pre>
+<h2 id="_5">Вложенные данные и фильтрация</h2>
+<h3 id="_6">Селекторы и дополнительные параметры</h3>
+<h4 id="show_whishlist"><code>show_whishlist</code></h4>
+<p>Тип: Булевый селектор (<code>string</code>).
+Позволяет отфильтровать товары, находящиеся в вишлисте текущего пользователя.</p>
+<p><strong>Доступные значения:</strong></p>
+<ul>
+<li><code>"true"</code> — показать только товары из вишлиста</li>
+<li><code>"false"</code> — показать товары не из вишлиста</li>
+<li><code>""</code> (пустая строка) — не применять фильтр</li>
+</ul>
+<h4 id="only_featured"><code>only_featured</code></h4>
+<p>Тип: Булевый селектор (<code>string</code>).
+Фильтрация товаров, отмеченных как "рекомендуемые" (featured).</p>
+<p><strong>Доступные значения:</strong></p>
+<ul>
+<li><code>"true"</code> — только рекомендуемые товары</li>
+<li><code>"false"</code> — только нерекомендуемые товары</li>
+<li><code>""</code> — не применять фильтр</li>
+</ul>
+<h4 id="only_new"><code>only_new</code></h4>
+<p>Тип: Булевый селектор (<code>string</code>).
+Фильтрация новых товаров.</p>
+<p><strong>Доступные значения:</strong></p>
+<ul>
+<li><code>"true"</code> — только новые товары</li>
+<li><code>"false"</code> — только не новые товары</li>
+<li><code>""</code> — не применять фильтр</li>
+</ul>
+<h4 id="with_discount"><code>with_discount</code></h4>
+<p>Тип: Булевый селектор (<code>string</code>).
+Фильтрация товаров, на которые действует скидка.</p>
+<p><strong>Доступные значения:</strong></p>
+<ul>
+<li><code>"true"</code> — только товары со скидкой</li>
+<li><code>"false"</code> — только товары без скидки</li>
+<li><code>""</code> — не применять фильтр</li>
+</ul>
+<h4 id="ordering"><code>ordering</code></h4>
+<p>Тип: Селектор сортировки (<code>string</code>).
+Определяет порядок вывода результатов поиска.</p>
+<p><strong>Доступные значения:</strong></p>
+<ul>
+<li><code>"price"</code> — по возрастанию цены</li>
+<li><code>"-price"</code> — по убыванию цены</li>
+<li><code>"avg_raiting"</code> — по возрастанию рейтинга</li>
+<li><code>"-avg_raiting"</code> — по убыванию рейтинга</li>
+<li><code>"newest"</code> — сначала новые</li>
+<li><code>"popularity"</code> — по популярности</li>
+</ul>
+<hr />
+<h3 id="_7">Как использовать селекторы</h3>
+<p>Все перечисленные поля передаются внутри объекта <code>filters</code> в теле запроса.</p>
+<p><strong>Пример запроса:</strong></p>
+<pre><code class="language-json">{
+  &quot;filters&quot;: {
+    &quot;show_whishlist&quot;: &quot;true&quot;,
+    &quot;only_featured&quot;: &quot;true&quot;,
+    &quot;only_new&quot;: &quot;false&quot;,
+    &quot;with_discount&quot;: &quot;true&quot;,
+    &quot;ordering&quot;: &quot;-avg_raiting&quot;
+  },
+  &quot;paginate&quot;: {
+    &quot;page&quot;: 1,
+    &quot;pp_items&quot;: 15
+  }
+}
+</code></pre>
+<h2 id="_8">Информация об ответе</h2>
+<p>В случае успешного выполнения возвращается объект с результатами поиска. Структура ответа включает агрегированные данные для построения фильтров на фронтенде: минимальные и максимальные значения цен, веса и размеров, доступные варианты характеристик, списки производителей, продавцов и категорий, а также информацию о скидках и товарах с высоким рейтингом.</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Описание</th>
+<th>Пример</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>form_errors</code></td>
+<td>Ошибки валидации формы. При успешном запросе — <code>null</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>success_message</code></td>
+<td>Сообщение об успешном выполнении</td>
+<td><code>"Success"</code></td>
+</tr>
+<tr>
+<td><code>page_data</code></td>
+<td>Основной объект с данными ответа (см. детальную структуру ниже)</td>
+<td><code>{...}</code></td>
+</tr>
+<tr>
+<td><code>exc_stack</code></td>
+<td>Стек ошибок (пустой при успехе)</td>
+<td><code>""</code></td>
+</tr>
+<tr>
+<td><code>debug</code></td>
+<td>Отладочная информация</td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td><code>user_groups</code></td>
+<td>Группы пользователя</td>
+<td><code>""</code></td>
+</tr>
+<tr>
+<td><code>user_perms</code></td>
+<td>Права пользователя</td>
+<td><code>""</code></td>
+</tr>
+<tr>
+<td><code>spent</code></td>
+<td>Время выполнения запроса на сервере в секундах</td>
+<td><code>1.5</code></td>
+</tr>
+<tr>
+<td><code>locale</code></td>
+<td>Код языка, использованный для локализации ответа</td>
+<td><code>"ru"</code></td>
+</tr>
+<tr>
+<td><code>url_name</code></td>
+<td>Техническое имя эндпоинта</td>
+<td><code>"products_search"</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="page_data">Детальная структура <code>page_data</code></h3>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>min_max</code></td>
+<td>Минимальные и максимальные значения цен, веса, длины, ширины, высоты</td>
+</tr>
+<tr>
+<td><code>variants</code></td>
+<td>Доступные варианты товаров (характеристики: цвет, размер и т.д.)</td>
+</tr>
+<tr>
+<td><code>selects</code></td>
+<td>Списки производителей, продавцов и категорий для фильтрации</td>
+</tr>
+<tr>
+<td><code>measures</code></td>
+<td>Детальные данные по измерениям (аналогично <code>min_max</code>)</td>
+</tr>
+<tr>
+<td><code>discounts</code></td>
+<td>Информация о скидках (количество товаров со скидкой)</td>
+</tr>
+<tr>
+<td><code>raiting_above_45</code></td>
+<td>Количество товаров с рейтингом выше 4.5</td>
+</tr>
+</tbody>
+</table>
+<h4 id="min_max-measures">Структура <code>min_max</code> / <code>measures</code></h4>
+<p>Объект содержит минимальные и максимальные значения для различных метрик. Ключи (1, 2, 3...) — идентификаторы валют или единиц измерения.</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_price</code></td>
+<td>Максимальные цены</td>
+</tr>
+<tr>
+<td><code>min_price</code></td>
+<td>Минимальные цены</td>
+</tr>
+<tr>
+<td><code>max_weight</code></td>
+<td>Максимальный вес</td>
+</tr>
+<tr>
+<td><code>min_weight</code></td>
+<td>Минимальный вес</td>
+</tr>
+<tr>
+<td><code>max_length</code></td>
+<td>Максимальная длина</td>
+</tr>
+<tr>
+<td><code>min_length</code></td>
+<td>Минимальная длина</td>
+</tr>
+<tr>
+<td><code>max_height</code></td>
+<td>Максимальная высота</td>
+</tr>
+<tr>
+<td><code>min_height</code></td>
+<td>Минимальная высота</td>
+</tr>
+<tr>
+<td><code>max_width</code></td>
+<td>Максимальная ширина</td>
+</tr>
+<tr>
+<td><code>min_width</code></td>
+<td>Минимальная ширина</td>
+</tr>
+</tbody>
+</table>
+<p>Каждое значение содержит:</p>
+<ul>
+<li><code>transform_value</code> — преобразованное значение (для отображения)</li>
+<li><code>real_value</code> — реальное значение (для расчетов)</li>
+</ul>
+<p><strong>Пример:</strong></p>
+<pre><code class="language-json">&quot;max_price&quot;: {
+  &quot;1&quot;: { &quot;transform_value&quot;: 26934, &quot;real_value&quot;: 26934 }
+}
+</code></pre>
+<h3 id="_9">Пример ответа</h3>
+<pre><code class="language-json">{
+  &quot;form_errors&quot;: null,
+  &quot;success_message&quot;: &quot;Success&quot;,
+  &quot;page_data&quot;: {
+    &quot;min_max&quot;: {
+      &quot;max_price&quot;: {
+        &quot;1&quot;: { &quot;transform_value&quot;: 26934, &quot;real_value&quot;: 26934 }
+      },
+      &quot;min_price&quot;: {
+        &quot;1&quot;: { &quot;transform_value&quot;: 0.91, &quot;real_value&quot;: 0.909 }
+      }
+    },
+    &quot;variants&quot;: {
+      &quot;variant_1&quot;: {
+        &quot;id&quot;: 1,
+        &quot;locale&quot;: {
+          &quot;ru&quot;: { &quot;variant_type_name&quot;: &quot;Цвет&quot; },
+          &quot;en&quot;: { &quot;variant_type_name&quot;: &quot;Color&quot; }
+        },
+        &quot;options&quot;: [
+          {
+            &quot;id&quot;: 5,
+            &quot;locale&quot;: { &quot;ru&quot;: &quot;Красный&quot; },
+            &quot;color&quot;: &quot;#f20707&quot;,
+            &quot;count&quot;: 2
+          }
+        ]
+      }
+    },
+    &quot;selects&quot;: {
+      &quot;manufacture&quot;: [{ &quot;id&quot;: 1, &quot;name&quot;: &quot;Ksushia&quot;, &quot;count&quot;: 83 }],
+      &quot;categories&quot;: [
+        { &quot;id&quot;: 1, &quot;locale&quot;: { &quot;ru&quot;: { &quot;cg_name&quot;: &quot;Броши&quot; } }, &quot;count&quot;: 37 }
+      ]
+    },
+    &quot;discounts&quot;: { &quot;any&quot;: 15 },
+    &quot;raiting_above_45&quot;: 5
+  },
+  &quot;spent&quot;: 1.12,
+  &quot;locale&quot;: &quot;ru&quot;,
+  &quot;url_name&quot;: &quot;products_search&quot;
+}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Главная"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
